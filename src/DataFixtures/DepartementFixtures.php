@@ -12,6 +12,6 @@ class DepartementFixtures extends Fixture
 
         
         
-        $manager->flush();
+        // $manager->flush();
     }
 }

@@ -10,6 +10,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 class RegionFixtures extends Fixture
 {
 
+    /**
+     * charge les régions de france à partir d'un fichier csv
+     *
+     * @return $regions tableau
+     */
     public function chargercsvregion(){
         //lire le fichier csv
         $regions = array();
@@ -26,20 +31,20 @@ class RegionFixtures extends Fixture
             }
             fclose($handle);
         }
-        var_dump($regions);
-        die();
+        return $regions;
     }
 
     public function load(ObjectManager $manager)
     {
         $faker=Factory::create("fr_FR");
 
-            $region=new Region();
-            $region->setNom();
-            $manager->persist($region);
-            
-        
-           
+            $regions = $this->chargercsvregion();
+
+            foreach ($regions  as $key => $value) {
+                $region=new Region();
+                $region->setRegNom($value[2]);
+                $manager->persist($region);
+            }
         $manager->flush();
 
     }

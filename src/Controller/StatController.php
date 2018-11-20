@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class StatController extends AbstractController
 {
     /**
-     * @Route("/", name="stat")
+     * @Route("/", name="accueil")
      */
     public function home()
     {

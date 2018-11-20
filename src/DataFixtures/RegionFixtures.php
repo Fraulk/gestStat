@@ -18,7 +18,7 @@ class RegionFixtures extends Fixture
             $region=new Region();
             $region->setNom();
             $manager->persist($region);
-
+            
         
            
         $manager->flush();

@@ -16,4 +16,5 @@ class StatController extends AbstractController
             'controller_name' => 'StatController',
         ]);
     }
+
 }

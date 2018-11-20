@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,16 @@ class Visiteur
      * @ORM\ManyToOne(targetEntity="App\Entity\Secteur", inversedBy="visiteurs")
      */
     private $vis_sec;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Travailler", mappedBy="tra_vis")
+     */
+    private $travaillers;
+
+    public function __construct()
+    {
+        $this->travaillers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,37 @@ class Visiteur
     public function setVisSec(?Secteur $vis_sec): self
     {
         $this->vis_sec = $vis_sec;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Travailler[]
+     */
+    public function getTravaillers(): Collection
+    {
+        return $this->travaillers;
+    }
+
+    public function addTravailler(Travailler $travailler): self
+    {
+        if (!$this->travaillers->contains($travailler)) {
+            $this->travaillers[] = $travailler;
+            $travailler->setTraVis($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTravailler(Travailler $travailler): self
+    {
+        if ($this->travaillers->contains($travailler)) {
+            $this->travaillers->removeElement($travailler);
+            // set the owning side to null (unless already changed)
+            if ($travailler->getTraVis() === $this) {
+                $travailler->setTraVis(null);
+            }
+        }
 
         return $this;
     }

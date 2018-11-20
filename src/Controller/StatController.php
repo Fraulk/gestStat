@@ -10,7 +10,7 @@ class StatController extends AbstractController
     /**
      * @Route("/", name="stat")
      */
-    public function index()
+    public function home()
     {
         return $this->render('stat/index.html.twig', [
             'controller_name' => 'StatController',

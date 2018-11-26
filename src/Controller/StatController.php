@@ -34,7 +34,7 @@ class StatController extends AbstractController
   
     }
 
-
+    /** 
      * @Route("/region", name="liste_region")
      */
     public function index(RegionRepository $repo)

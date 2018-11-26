@@ -8,13 +8,26 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/StatController.php'|file_link(0) }}">src/Controller/StatController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/stat/index.html.twig'|file_link(0) }}">templates/stat/index.html.twig</a></code></li>
-    </ul>
+{# <div class="example-wrapper">
+    <h1>Liste des Statistiques</h1>
 </div>
+
+<div class="container">
+    <div class="row">
+{% for statistique in statistiques %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">{{statistique.titre}}</p>
+                    <p>Categorie : {{statistique.categorie.libelle}}</p>
+                    <p>Description : {{statistique.description}}</p>
+                    <p>Prix : {{statistique.price}}</p>
+                    <p>Prix : {{statistique.CreatedAt | date("d/m/Y") }}</p>
+
+                </div>
+            </div>
+        </div>
+{% endfor %}
+    </div>
+</div> #}
 {% endblock %}

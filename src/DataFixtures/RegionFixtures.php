@@ -35,6 +35,7 @@ class RegionFixtures extends Fixture
     }
 
 
+    
     public function load(ObjectManager $manager)
     {
         $faker=Factory::create("fr_FR");

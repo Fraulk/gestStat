@@ -34,16 +34,22 @@ class RegionFixtures extends Fixture
         return $regions;
     }
 
+
     public function load(ObjectManager $manager)
     {
         $faker=Factory::create("fr_FR");
 
             $regions = $this->chargercsvregion();
-
+            // echo "<pre>";
+            // var_dump($regions);
+            // echo "</pre>";
+            // die();
             foreach ($regions  as $key => $value) {
                 $region=new Region();
-                $region->setRegNom($value[2]);
+                $region->setRegCode($value["code"]);
+                $region->setRegNom($value["name"]);
                 $manager->persist($region);
+                // var_dump($value);
             }
         $manager->flush();
 

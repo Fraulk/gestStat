@@ -28,9 +28,21 @@ class StatController extends AbstractController
     public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
-        return $this->render('stat/liste.html.twig', [
+        return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions
+        ]);
+    }
+
+    /**
+     * @Route("/departement", name="listeDep")
+     */
+    public function departement(RegionRepository $repo)
+    {
+        $Departements=$repo->findAll();
+        return $this->render('stat/departement.html.twig', [
+            'controller_name' => 'DepartementController',
+            'departements' => $Departements
         ]);
     }
 

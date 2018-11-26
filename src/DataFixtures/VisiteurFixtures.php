@@ -12,6 +12,11 @@ class VisiteurFixtures extends Fixture
     {
         $faker=Factory::create("fr_FR");
 
+        for($j = 1; $j <= mt_rand(3,4); $j++){
+            $visiteur=new Visiteur();
+            $visiteur->setMatricule;
+        }
+
         $manager->flush();
     }
 }

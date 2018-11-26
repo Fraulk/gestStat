@@ -4,11 +4,8 @@ namespace App\Controller;
 
 use Faker\Factory;
 use App\Entity\Region;
-<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\Request;
-=======
 use App\Repository\RegionRepository;
->>>>>>> 4ab7fc1af4d58bc11faf4f650bf99b34089072bd
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

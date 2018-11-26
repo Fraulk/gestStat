@@ -11,13 +11,13 @@
 {% for region in regions  %}
             <div class="col-md-4">
                 <div class="card mb-2">
-                    <img style="height: 200px; width: 100%; display: block;" src="{{ region.avatar }}" alt="Card image">
-                    <h3 class="card-header">{{ region.nom }} {{ region.code }} </h3>
+                    {# <img style="height: 200px; width: 100%; display: block;" src="{{ region.avatar }}" alt="Card image"> #}
+                    <h3 class="card-header">{{ region.RegNom }} {{ region.RegCode }} </h3>
                     <div class="card-body">
                         {# <p>{{ region.adresse | raw }}, {{ region.codePostal }}, , {{ region.ville }}</p> #}
                         {# <p>Téléphone: {{ region.tel }}</p> #}
                         {# <p>Mail: {{ region.mail }}</p> #}
-                        <h6 class="card-subtitle text-muted rounded-circle">Catégorie: {{region.categorie.designation}}</h6>
+                        {# <h6 class="card-subtitle text-muted rounded-circle">Catégorie: {{region.categorie.designation}}</h6> #}
                         {# <h7 class="card-subtitle text-muted">Prix: {{region.prix}} $</h7> #}
                         {# <h8 class="card-subtitle text-muted"> {{ region.CreatedAt | date('d/m/Y')}} </h8> #}
                     </div>

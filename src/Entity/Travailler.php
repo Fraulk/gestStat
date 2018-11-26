@@ -6,6 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TravaillerRepository")
+ * @ORM\Table(uniqueConstraints={
+ *      @ORM\UniqueConstraint(name="user_travailler_unique", columns{"tra_reg_id","tra_vis_id","tra_date"})
+ *      })
  */
 class Travailler
 {

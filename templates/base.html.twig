@@ -5,8 +5,9 @@
         <link rel="stylesheet" href="css/css.css">
 
         <title>
-            {% block title %}Bienvenue au projet !{% endblock %}
+            {% block title %}Gestion de statistique{% endblock %}
         </title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -18,12 +19,13 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    {# pageCourante vient du Statcontroller je l'ai définit là #}
+                    <li class="nav-item {% if pageCourante is defined and pageCourante == 'accueil' %} active {% endif %}">
                         <a class="nav-link" href="{{path('accueil')}}">Accueil
-                            <span class="sr-only">(current)</span></a>
+                            <span class="sr-only">(current)</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('liste_region')}}">Region</a>
+                        <a class="nav-link {% if pageCourante is defined and pageCourante == 'region' %} active {% endif %} " href="{{path('liste_region')}}">Region</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">onglet2</a>

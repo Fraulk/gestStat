@@ -11,13 +11,13 @@ class TravaillerFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker=Factory::create("fr_FR");
+        /*$faker=Factory::create("fr_FR");
         $travailler = new Travailler();
         $travailler->setTraReg($regions)
                    ->setTraVis($visiteur)
                    ->setTraDate($faker->dateTimeBetween('-6 months'))
                    ->setTraRole($faker->sentence($nbWords =6 ,$variableNbWords = true));
 
-        $manager->flush();
+        $manager->flush();*/
     }
 }

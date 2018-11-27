@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
+use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,7 @@ class StatController extends AbstractController
         
         return $this->render('stat/index.html.twig', [
             'controller_name' => 'StatController',
+            'pageCourante'=>"accueil"
         ]);
     }
 
@@ -43,15 +45,31 @@ class StatController extends AbstractController
         ]);
     }
 
+    // grâce au méthode findAll() du repository de Region, on aura la liste de tous les regions
+    // on la dailleurs définit dans $Regions
+    // $Regions qui devient regions
     /** 
      * @Route("/region", name="liste_region")
      */
     public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
-        return $this->render('stat/liste.html.twig', [
+        return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
-            'regions' => $Regions
+            'regions' => $Regions,
+            'pageCourante'=>"region"
+        ]);
+    }
+
+    /**
+     * @Route("/departement", name="listeDep")
+     */
+    public function departement(DepartementRepository $repo)
+    {
+        $Departements=$repo->findAll();
+        return $this->render('stat/departement.html.twig', [
+            'controller_name' => 'DepartementController',
+            'departements' => $Departements
         ]);
     }
 

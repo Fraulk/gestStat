@@ -18,7 +18,7 @@ class DepartementFixtures extends Fixture
         //lire le fichier csv
         $regions = array();
         $row = 1;
-        if(($handle = fopen("C:\\laragon\\www\\gestStat\\src\\DataFixtures\\departments.csv", "r")) !== FALSE){
+        if(($handle = fopen("src\\DataFixtures\\departments.csv", "r")) !== FALSE){
             while ( ($data = fgetcsv($handle,1000, ",")) !== FALSE){
                     $departements[$row] = array(
                             "id" => $data[0],

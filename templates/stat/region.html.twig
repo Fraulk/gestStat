@@ -6,9 +6,10 @@
 {% block body %}
 
     <div class="container">
-        <div class="row">
+        <div class="row" style="padding-top: 10px;">
 {# region est définit dans le statController #}
 {% for region in regions  %}
+        
             <div class="col-md-4">
                 <div class="card mb-2">
                     {# <img style="height: 200px; width: 100%; display: block;" src="{{ region.avatar }}" alt="Card image"> #}
@@ -25,6 +26,7 @@
                 {# <a href="{{ path('edit_region', {'id':region.id}) }}" class="btn btn-primary">EDITER</a> #}
                 {# <a href="{{ path('show_region', {'id':region.id}) }}" class="btn btn-primary">SUITE</a> #}
             </div>
+        
 {% endfor %}
         </div>
     </div>

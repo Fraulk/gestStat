@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Faker\Factory;
 use App\Entity\Region;
+use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,12 +29,20 @@ class StatController extends AbstractController
     /**
      * @Route("/visitr_reg", name="visiteursparregion")
      */
-    public function visiteurparregion(Request $request) : Response
+    public function visiteurparregion(ObjectManager $manager,Request $request)
     {
-        $search = new VisiteurParRegion;
-        $form = $this->createForm();
-        
-  
+        $form = $this->createForm(VisiteurParRegionType::class);
+        $form->handleRequest($request);
+        dump($request);
+        if($form->isSubmitted())
+        {
+            $num_reg =$request->request->get('reg_nom');
+            dump($request->request);
+        }
+
+        return $this->render('stat/visiteursregions.html.twig',[
+            'form' => $form->createView()
+        ]);
     }
 
     // grâce au méthode findAll() du repository de Region, on aura la liste de tous les regions

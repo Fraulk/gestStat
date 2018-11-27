@@ -14,7 +14,7 @@ class VisiteurParRegionType extends AbstractType
     {
         $builder
             ->add('reg_nom', EntityType::class, array(
-                'class' => 'OCPlatformBundle::Region',
+                'class' => Region::class,
                 'choice_label' => 'reg_nom',
                 'multiple' => false,
             ))
@@ -24,7 +24,7 @@ class VisiteurParRegionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Region::class,
+            // 'data_class' => Region::class,
         ]);
     }
 }

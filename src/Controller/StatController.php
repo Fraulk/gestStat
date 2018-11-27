@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use Faker\Factory;
 use App\Entity\Region;
-use Symfony\Component\HttpFoundation\Request;
 use App\Repository\RegionRepository;
+use App\Repository\DepartementRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,7 +50,7 @@ class StatController extends AbstractController
     /**
      * @Route("/departement", name="listeDep")
      */
-    public function departement(RegionRepository $repo)
+    public function departement(DepartementRepository $repo)
     {
         $Departements=$repo->findAll();
         return $this->render('stat/departement.html.twig', [

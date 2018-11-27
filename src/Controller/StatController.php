@@ -36,8 +36,9 @@ class StatController extends AbstractController
         dump($request);
         if($form->isSubmitted())
         {
-            $num_reg =$request->request->get('reg_nom');
-            dump($request->request);
+            $num_reg =$request->request; //->get('reg_nom')
+            //dump($num_reg);
+            //dump($request->request->get('reg_nom'));
         }
 
         return $this->render('stat/visiteursregions.html.twig',[

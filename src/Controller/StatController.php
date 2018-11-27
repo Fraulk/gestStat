@@ -20,6 +20,7 @@ class StatController extends AbstractController
         
         return $this->render('stat/index.html.twig', [
             'controller_name' => 'StatController',
+            'pageCourante'=>"accueil"
         ]);
     }
 
@@ -34,6 +35,9 @@ class StatController extends AbstractController
   
     }
 
+    // grâce au méthode findAll() du repository de Region, on aura la liste de tous les regions
+    // on la dailleurs définit dans $Regions
+    // $Regions qui devient regions
     /** 
      * @Route("/region", name="liste_region")
      */
@@ -42,7 +46,8 @@ class StatController extends AbstractController
         $Regions=$repo->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
-            'regions' => $Regions
+            'regions' => $Regions,
+            'pageCourante'=>"region"
         ]);
     }
 

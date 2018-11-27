@@ -60,7 +60,8 @@ class StatController extends AbstractController
         $Departements=$repo->findAll();
         return $this->render('stat/departement.html.twig', [
             'controller_name' => 'DepartementController',
-            'departements' => $Departements
+            'departements' => $Departements,
+            'pageCourante' => 'departement'
         ]);
     }
 

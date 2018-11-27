@@ -19,7 +19,6 @@ class RegionFixtures extends Fixture
         //lire le fichier csv
         $regions = array();
         $row = 1;
-        //if(($handle = fopen("C:\\laragon\\www\\gestStat\\src\\DataFixtures\\regions.csv", "r")) !== FALSE){   //frat
         if(($handle = fopen("src\\DataFixtures\\regions.csv", "r")) !== FALSE){
             while ( ($data = fgetcsv($handle,1000, ",")) !== FALSE){
                     $regions[$row] = array(

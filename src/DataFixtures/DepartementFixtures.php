@@ -22,9 +22,10 @@ class DepartementFixtures extends Fixture
             while ( ($data = fgetcsv($handle,1000, ",")) !== FALSE){
                     $departements[$row] = array(
                             "id" => $data[0],
-                            "code" => $data[1],
-                            "name" => $data[2],
-                            "slug" => $data[3]
+                            "region_code" => $data[1],
+                            "code" => $data[2],
+                            "name" => $data[3],
+                            "slug" => $data[4]
                     );
                 $row++;
             }

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block titre 'Nombre de visiteurs par region' %}
+
+{% block body %}
+<div class='container'>
+    <h1>Nombre de visiteurs qui travaillent par région</h1>
+    <p>Choisir une région : </p>
+    {{ form_start(form)}}
+        <div class="form-group">
+            {{form_widget(form)}}
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

@@ -52,7 +52,11 @@
 
 
                 </ul>
-                
+                <form class="form-inline my-2 my-lg-0">
+                    
+                    {{ app.user.username is defined }}
+      
+                </form>
             </div>
         </nav>
         {% block body %}{% endblock %}

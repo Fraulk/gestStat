@@ -74,4 +74,18 @@ class StatController extends AbstractController
         ]);
     }
 
+    
+    /**
+     * @Route("/nbvisiteursdeleguesreg", name="liste_nb_vis_deleg_reg")
+     */
+    public function visiteursdeleguesreg(RegionRepository $repo)
+    {
+        $Regions=$repo->findAll();
+        return $this->render('stat/visiteursdeleguesreg.html.twig', [
+            'controller_name' => 'VisiteursdeleguesregController',
+            'regions' => $Regions,
+            'pageCourante' => 'region'
+        ]);
+    }
+    
 }

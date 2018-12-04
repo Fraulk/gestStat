@@ -29,7 +29,7 @@ class Departement
     private $dep_nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $dep_chefvente;
 

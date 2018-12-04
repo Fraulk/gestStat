@@ -11,7 +11,10 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+<<<<<<< HEAD
     <div class="container">
+=======
+>>>>>>> 9e1592dfd6a94576b945e93df1243e04f3e890a9
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="{{path('accueil')}}">Gestion de statistique</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,8 +35,13 @@
                         <a class="nav-link {% if pageCourante is defined and pageCourante == 'departement' %} active {% endif %}" href="{{path('listeDep')}}">Département</a>
                     {# </li>
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link" href="#">onglet3</a>
                     </li> #}
+=======
+                        <a class="nav-link" href="{{path('visiteursparregion')}}">Visiteurs travaillant par region</a>
+                    </li>
+>>>>>>> 9e1592dfd6a94576b945e93df1243e04f3e890a9
                     {% if not app.user %}
                         <li class="nav-item">
                             <a href="{{ path('security_login') }}" class="nav-link">
@@ -52,21 +60,27 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     
+<<<<<<< HEAD
                     {% if app.user %}
                     {{ app.user.username }}
                     {% else %}
                     Connectez-vous
                     {% endif %}
                     
+=======
+                    {{ app.user.username is defined }}
+>>>>>>> 9e1592dfd6a94576b945e93df1243e04f3e890a9
       
                 </form>
             </div>
         </nav>
+<<<<<<< HEAD
     
         {% block body %}lol{% endblock %}
+=======
+        {% block body %}{% endblock %}
+>>>>>>> 9e1592dfd6a94576b945e93df1243e04f3e890a9
 
         {% block javascripts %}{% endblock %}
-   </div> 
-   </body>
-
+    </body>
 </html>

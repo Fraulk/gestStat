@@ -33,10 +33,26 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">onglet3</a>
                     </li>
+                    {% if not app.user %}
+                        <li class="nav-item">
+                            <a href="{{ path('security_login') }}" class="nav-link">
+                                Connexion
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path('security_logout') }}" class="nav-link">
+                                Déconnexion
+                            </a>
+                        </li>
+                    {% endif %}
+
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    
+                    {{ app.user.username is defined }}
+      
                 </form>
             </div>
         </nav>

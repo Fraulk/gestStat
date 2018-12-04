@@ -50,14 +50,6 @@ class StatController extends AbstractController
         ]);
     }
 
-    /**
-     * Sélectionner une région affiche la liste des visiteurs travaillant dans cette region dans une période 
-     * @Route("/visitr_regetdate", name="visiteursparregionetdate")
-     */
-    public function visiteurparregionetdate(ObjectManager $manager,Request $request)
-    {
-
-    }
 
     // grâce au méthode findAll() du repository de Region, on aura la liste de tous les regions
     // on la d'ailleurs définit dans $Regions

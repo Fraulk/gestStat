@@ -32,19 +32,29 @@ class VisiteurRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
-
+        */
+        
     /*
     public function findOneBySomeField($value): ?Visiteur
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+        ->andWhere('v.exampleField = :val')
+        ->setParameter('val', $value)
+        ->getQuery()
+        ->getOneOrNullResult()
         ;
     }
     */
+        
+        public function findVisitrTravReg($numregion)
+        {
+            return $this->createQueryBuilder('v')
+                        ->join('v.travaillers', 't')
+                        ->andWhere('t.tra_reg = :val')
+                        ->setParameter('val', $numregion)
+                        ->getQuery()
+                        ->getResult();
+        }
 }

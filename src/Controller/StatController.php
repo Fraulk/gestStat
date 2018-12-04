@@ -27,6 +27,7 @@ class StatController extends AbstractController
     }
 
     /**
+     * Sélectionner une région affiche la liste des visiteurs travaillant dans cette region
      * @Route("/visitr_reg", name="visiteursparregion")
      */
     public function visiteurparregion(ObjectManager $manager,Request $request)
@@ -36,18 +37,30 @@ class StatController extends AbstractController
         dump($request);
         if($form->isSubmitted())
         {
-            $num_reg =$request->request; //->get('reg_nom')
-            //dump($num_reg);
-            //dump($request->request->get('reg_nom'));
-        }
+            $postData = $request->request->get('visiteur_par_region');
+            $name_value = $postData['reg_nom'];
+            //dump($name_value);
+            $listevisites = findVisitrTravReg($name_value);
 
+        }
         return $this->render('stat/visiteursregions.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'listevisites' => $listevisites
+        
         ]);
     }
 
+    /**
+     * Sélectionner une région affiche la liste des visiteurs travaillant dans cette region dans une période 
+     * @Route("/visitr_regetdate", name="visiteursparregionetdate")
+     */
+    public function visiteurparregionetdate(ObjectManager $manager,Request $request)
+    {
+
+    }
+
     // grâce au méthode findAll() du repository de Region, on aura la liste de tous les regions
-    // on la dailleurs définit dans $Regions
+    // on la d'ailleurs définit dans $Regions
     // $Regions qui devient regions
     /** 
      * @Route("/region", name="liste_region")

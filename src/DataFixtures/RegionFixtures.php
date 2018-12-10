@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Entity\Secteur;
 use App\Entity\Visiteur;
+use App\Entity\Travailler;
 use App\Entity\Departement;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -89,10 +90,24 @@ class RegionFixtures extends Fixture
                             ->setVisDep($depTable[$randDep]);
                             //->setVisSec($secTable[$randSec]);
                     $manager->persist($visitor);
+                    
+                    //creation de travailler
+                    $visitorTable[] = $visitor;
+
                 }
+ 
+
             }
 
-            
+            foreach($visitorTable as $v){
+                $travailler = new Travailler();
+                $roleTable = ["Visiteur", "Délégué", "Responsable secteur"];
+                $travailler->setTraReg($region)
+                            ->setTraVis($visitorTable[mt_rand(1,91)])
+                            ->setTraDate($faker->dateTimeBetween('-5 years', 'now'))
+                            ->setTraRole($roleTable[mt_rand(0,2)]);
+                $manager->persist($travailler);
+                }
 
             $secLibTable = ["Nord", "Ouest", "Sud", "Est", "Paris Centre"];
             $secCodeTable = ["n", "o", "s", "e", "pc"];

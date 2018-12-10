@@ -45,8 +45,7 @@ class StatController extends AbstractController
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
-            'listevisites' => $listevisites
-        
+            //'listevisites' => $listevisites
         ]);
     }
 
@@ -92,6 +91,14 @@ class StatController extends AbstractController
             'regions' => $Regions,
             'pageCourante' => 'region'
         ]);
+    }
+
+    /**
+     * @Route("/lien_stat", name="lien_stat")
+     */
+    public function lienstat()
+    {
+        return $this->render('stat/lien_stat.html.twig');
     }
     
 }

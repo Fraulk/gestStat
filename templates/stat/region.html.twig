@@ -15,8 +15,8 @@
                     {# <img style="height: 200px; width: 100%; display: block;" src="{{ region.avatar }}" alt="Card image"> #}
                     <h3 class="card-header">{{ region.RegNom }} {{ region.RegCode }} </h3>
                     <div class="card-body">
-                    {% for visiteur in visiteurs %}
-                        <p>{{ visiteur.visNom }}</p>
+                    {% for travailler in region.travaillers %}
+                        <p>{{ travailler.traVis.visMatricule }} {{ travailler.traVis.visNom }},<br>{{ travailler.traVis.visAdresse }} {{ travailler.traVis.visCp }} {{ travailler.traVis.visVille }} {{ travailler.traVis.visSec }}</p>
                     {% endfor %}
                         {# <p>{{ region.adresse | raw }}, {{ region.codePostal }}, , {{ region.ville }}</p> #}
                         {# <p>Téléphone: {{ region.tel }}</p> #}

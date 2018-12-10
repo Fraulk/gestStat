@@ -40,14 +40,13 @@ class StatController extends AbstractController
         {
             $postData = $request->request->get('visiteur_par_region');
             $name_value = $postData['reg_nom'];
-            //dump($name_value);
+            dump($name_value);
             $listevisites =$repo->findVisitrTravReg($name_value);
-            //dump($listevisites);
-
+            dump($listevisites);
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
-           //'listevisites' => $listevisites
+            //'listevisites' => $listevisites
         ]);
     }
 

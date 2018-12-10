@@ -49,54 +49,36 @@ class RegionFixtures extends Fixture
             // var_dump($regions);
             // echo "</pre>";
             // die();
-                $dep=new Departement();
-                $dep->setDepCode("s")
-                    ->setDepNom( "Swiss");
-                $manager->persist($dep);
-                $dep1=new Departement();
-                $dep1->setDepCode("b")
-                     ->setDepNom( "Bourdon");
-                $manager->persist($dep1);
-                $dep2=new Departement();
-                $dep2->setDepCode("a")
-                    ->setDepNom( "Autre");
-                $manager->persist($dep2);
-                $depTable = [$dep, $dep1, $dep2];
 
-                $sec = new Secteur();
-                $sec->setSecCode("Nord")
-                    ->setSecLibelle("n");
-                $manager->persist($sec);
-                $sec1 = new Secteur();
-                $sec1->setSecCode("Ouest")
-                     ->setSecLibelle("o");
-                $manager->persist($sec1);
-                $sec2 = new Secteur();
-                $sec2->setSecCode("Sud")
-                     ->setSecLibelle("s");
-                $manager->persist($sec2);
-                $sec3 = new Secteur();
-                $sec3->setSecCode("Est")
-                     ->setSecLibelle("e");
-                $manager->persist($sec3);
-                $sec4 = new Secteur();
-                $sec4->setSecCode("Paris Centre")
-                     ->setSecLibelle("pc");
-                $manager->persist($sec4);
-                $secTable = [$sec, $sec1, $sec2, $sec3, $sec4];
-                
+            //Creation des departements
+            $dep=new Departement();
+            $dep->setDepCode("s")
+                ->setDepNom( "Swiss");
+            $manager->persist($dep);
+            $dep1=new Departement();
+            $dep1->setDepCode("b")
+                 ->setDepNom( "Bourdon");
+            $manager->persist($dep1);
+            $dep2=new Departement();
+            $dep2->setDepCode("a")
+                ->setDepNom( "Autre");
+            $manager->persist($dep2);
+            $depTable = [$dep, $dep1, $dep2];
+
+            //creation des regions
+            $regionTable = [];
             foreach ($regions  as $key => $value) {
+            $region=new Region();
+            $region->setRegCode($value["code"]);
+            $region->setRegNom($value["name"]);
+            $manager->persist($region);
+            $regionTable[] = $region;   //on fout chaque objet region dedans pour definir 'secteur'
 
-
-                $region=new Region();
-                $region->setRegCode($value["code"]);
-                $region->setRegNom($value["name"]);
-                $manager->persist($region);
                 // var_dump($value);
+                //creation de visiteur
                 for ($i=0; $i < mt_rand(3,8) ; $i++) { 
                     $visitor = new Visiteur();
 
-                    $randSec = mt_rand(0,4);
                     $randDep = mt_rand(0,2);
                     $visitor->setVisMatricule(mt_rand(1000,9999))
                             ->setVisNom($faker->name())
@@ -104,10 +86,25 @@ class RegionFixtures extends Fixture
                             ->setVisCp($faker->postcode())
                             ->setVisVille($faker->city())
                             ->setVisDateembauche($faker->dateTimeBetween('-10 years', 'now'))
-                            ->setVisDep($depTable[$randDep])
-                            ->setVisSec($secTable[$randSec]);
+                            ->setVisDep($depTable[$randDep]);
+                            //->setVisSec($secTable[$randSec]);
                     $manager->persist($visitor);
                 }
+            }
+
+            
+
+            $secLibTable = ["Nord", "Ouest", "Sud", "Est", "Paris Centre"];
+            $secCodeTable = ["n", "o", "s", "e", "pc"];
+
+            //creation de secteur grace au tableau d'ojet region créée auparavant
+            foreach ($secLibTable as $value) {
+                $i = 0;
+                $secteur = new Secteur();
+                $secteur->setSecLibelle($value)
+                        ->setSecCode($i)
+                        ->setRegion($regionTable[mt_rand(0,18)]);
+                $manager->persist($secteur);
             }
         $manager->flush();
 

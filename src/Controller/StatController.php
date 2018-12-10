@@ -61,9 +61,11 @@ class StatController extends AbstractController
     public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
+        $visiteurs = $repo->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
+            'visiteurs'  => $visiteurs,
             'pageCourante'=>"region"
         ]);
     }
@@ -91,7 +93,7 @@ class StatController extends AbstractController
         return $this->render('stat/visiteursdeleguesreg.html.twig', [
             'controller_name' => 'VisiteursdeleguesregController',
             'regions' => $Regions,
-            'pageCourante' => 'region'
+            'pageCourante' => 'listevisdel'
         ]);
     }
 

@@ -12,21 +12,32 @@
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
     {{ form_end(form) }}
-    <table>
+    <div>
+        <p>Liste des visiteurs travaillant dans cette région </p>
+    </div>
+    <table class='table table-hover'>
         <tr>
-            <td>Visiteur Id</td>
-            <td>Département Id</td>
-            <td>Secteur Id</td>
-            <td>Visiteur Matricule</td>
-            <td>Visteur Nom</td>
-            <td>Visiteur Adresse</td>
-            <td>Visiteur Code Postal</td>
-            <td>Visiteur Ville</td>
-            <td>Visiteur Date Embauche</td>
+            <th>Visiteur Id</th>
+            <th>Département Id</th>
+            <th>Secteur Id</th>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Code Postal</th>
+            <th>Ville</th>
+            <th>Date Embauche</th>
         </tr>
         {% for levisiteur in listevisites %}
         <tr>
-            <td>{{levisiteur.id}}<td>
+            <td>{{levisiteur.Id}}<td>
+            <td>{{levisiteur.VisDep.Id}}<td>
+            <td>{{levisiteur.VisSec}}<td>
+            <td>{{levisiteur.VisMatricule}}<td>
+            <td>{{levisiteur.VisNom}}<td>
+            <td>{{levisiteur.VisAdresse}}<td>
+            <td>{{levisiteur.VisCp}}<td>
+            <td>{{levisiteur.VisVille}}<td>
+            <td>{{levisiteur.VisDateembauche| date("d/m/Y")}}<td>
         </tr>
         {% endfor %}
     </table>

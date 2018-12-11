@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
+use App\Repository\VisiteurRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -84,9 +85,9 @@ class StatController extends AbstractController
     /**
      * @Route("/nbvisiteursdeleguesreg", name="liste_nb_vis_deleg_reg")
      */
-    public function visiteursdeleguesreg(RegionRepository $repo)
+    public function visiteursdeleguesreg(VisiteurRepository $repo)
     {
-        $Regions=$repo->findAll();
+        $Regions=$repo->findNombreVisiteursDeleguesReg();
         return $this->render('stat/visiteursdeleguesreg.html.twig', [
             'controller_name' => 'VisiteursdeleguesregController',
             'regions' => $Regions,

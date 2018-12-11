@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
+use App\Repository\VisiteurRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -30,7 +31,7 @@ class StatController extends AbstractController
      * Sélectionner une région affiche la liste des visiteurs travaillant dans cette region
      * @Route("/visitr_reg", name="visiteursparregion")
      */
-    public function visiteurparregion(ObjectManager $manager,Request $request)
+    public function visiteurparregion(ObjectManager $manager,Request $request,VisiteurRepository $repo)
     {
         $form = $this->createForm(VisiteurParRegionType::class);
         $form->handleRequest($request);
@@ -39,9 +40,9 @@ class StatController extends AbstractController
         {
             $postData = $request->request->get('visiteur_par_region');
             $name_value = $postData['reg_nom'];
-            //dump($name_value);
-            $listevisites = findVisitrTravReg($name_value);
-
+            dump($name_value);
+            $listevisites =$repo->findVisitrTravReg($name_value);
+            dump($listevisites);
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
@@ -59,11 +60,9 @@ class StatController extends AbstractController
     public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
-        $visiteurs = $repo->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
-            'visiteurs'  => $visiteurs,
             'pageCourante'=>"region"
         ]);
     }

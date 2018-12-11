@@ -12,6 +12,25 @@
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
     {{ form_end(form) }}
+    <table>
+        <tr>
+            <td>Visiteur Id</td>
+            <td>Département Id</td>
+            <td>Secteur Id</td>
+            <td>Visiteur Matricule</td>
+            <td>Visteur Nom</td>
+            <td>Visiteur Adresse</td>
+            <td>Visiteur Code Postal</td>
+            <td>Visiteur Ville</td>
+            <td>Visiteur Date Embauche</td>
+        </tr>
+        {% for levisiteur in listevisites %}
+        <tr>
+            <td>{{levisiteur.id}}<td>
+        </tr>
+        {% endfor %}
+    </table>
+
 
 </div>
 

@@ -31,23 +31,23 @@ class StatController extends AbstractController
      * Sélectionner une région affiche la liste des visiteurs travaillant dans cette region
      * @Route("/visitr_reg", name="visiteursparregion")
      */
-    public function visiteurparregion(ObjectManager $manager,Request $request)
+    public function visiteurparregion(ObjectManager $manager,Request $request,VisiteurRepository $repo)
     {
         $form = $this->createForm(VisiteurParRegionType::class);
         $form->handleRequest($request);
         dump($request);
+        $listevisites= null;
         if($form->isSubmitted())
         {
             $postData = $request->request->get('visiteur_par_region');
             $name_value = $postData['reg_nom'];
-            //dump($name_value);
-            $listevisites = findVisitrTravReg($name_value);
-
+            dump($name_value);
+            $listevisites =$repo->findVisitrTravReg($name_value);
+            dump($listevisites);
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
             'listevisites' => $listevisites
-        
         ]);
     }
 
@@ -91,8 +91,33 @@ class StatController extends AbstractController
         return $this->render('stat/visiteursdeleguesreg.html.twig', [
             'controller_name' => 'VisiteursdeleguesregController',
             'regions' => $Regions,
-            'pageCourante' => 'region'
+            'pageCourante' => 'listevisdel'
         ]);
     }
+
+    /**
+     * @Route("/lien_stat", name="lien_stat")
+     */
+    public function lienstat()
+    {
+        return $this->render('stat/lien_stat.html.twig');
+    }
     
+
+    /**
+     * @Route("/testApi", name="api")
+     */
+    public function api_decode()
+    {
+        $api = file_get_contents('https://geo.api.gouv.fr/regions?fields=nom,code');
+        $apiDecode = json_decode($api);
+        // dump($apiDecode);
+        // die();
+        return $this->render('stat/testApi.html.twig', [
+            'controller_name'   =>  'ApiController',
+            'api'   =>  $apiDecode,
+            'pageCourante'  =>  'api'
+        ]);
+
+    }
 }

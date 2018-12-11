@@ -36,6 +36,7 @@ class StatController extends AbstractController
         $form = $this->createForm(VisiteurParRegionType::class);
         $form->handleRequest($request);
         dump($request);
+        $listevisites= null;
         if($form->isSubmitted())
         {
             $postData = $request->request->get('visiteur_par_region');
@@ -46,7 +47,7 @@ class StatController extends AbstractController
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
-            //'listevisites' => $listevisites
+            'listevisites' => $listevisites
         ]);
     }
 

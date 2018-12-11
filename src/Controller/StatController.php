@@ -103,4 +103,21 @@ class StatController extends AbstractController
         return $this->render('stat/lien_stat.html.twig');
     }
     
+
+    /**
+     * @Route("/testApi", name="api")
+     */
+    public function api_decode()
+    {
+        $api = file_get_contents('https://geo.api.gouv.fr/regions?fields=nom,code');
+        $apiDecode = json_decode($api);
+        // dump($apiDecode);
+        // die();
+        return $this->render('stat/testApi.html.twig', [
+            'controller_name'   =>  'ApiController',
+            'api'   =>  $apiDecode,
+            'pageCourante'  =>  'api'
+        ]);
+
+    }
 }

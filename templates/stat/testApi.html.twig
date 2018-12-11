@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de statistique | Test d'API{% endblock %}
+
+{% block body %}
+
+<p>Liste des régions récupéré via une api</p>
+{% for cours in api %}
+<p> {{ cours.nom }}</p>
+{% endfor %}
+
+{% endblock %}

@@ -120,4 +120,5 @@ class StatController extends AbstractController
         ]);
 
     }
+
 }

@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
+use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,6 +79,19 @@ class StatController extends AbstractController
             'controller_name' => 'RegionController',
             'regions' => $Regions,
             'pageCourante'=>"region"
+        ]);
+    }
+
+    /**
+     * @Route("/nbVisitrParSecteur", name="nbVisitrParSecteur")
+     */
+    public function nbVisitrParSecteurg(SecteurRepository $repo)
+    {
+        $Secteur=$repo->findAll();
+        return $this->render('stat/nbVisitrParSecteur.html.twig', [
+            'controller_name' => 'RegionController',
+            'secteurs' => $Secteur,
+            'pageCourante'=>"secteur"
         ]);
     }
 

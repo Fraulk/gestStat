@@ -59,6 +59,10 @@
   color: #fff
 }
 
+mark {
+  background-color: var(--gray) !important;
+  color: #fff;
+}
  
  html {
    font-family: sans-serif;

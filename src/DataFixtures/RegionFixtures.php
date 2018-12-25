@@ -99,11 +99,12 @@ class RegionFixtures extends Fixture
 
             }
 
+            $nbVisActuel = count($visitorTable) - 1;
             foreach($visitorTable as $v){
                 $travailler = new Travailler();
                 $roleTable = ["Visiteur", "Délégué", "Responsable secteur"];
                 $travailler->setTraReg($regionTable[mt_rand(0,18)])
-                            ->setTraVis($visitorTable[mt_rand(1,$i)])
+                            ->setTraVis($visitorTable[mt_rand(0,$nbVisActuel)])
                             ->setTraDate($faker->dateTimeBetween('-5 years', 'now'))
                             ->setTraRole($roleTable[mt_rand(0,2)]);
                 $manager->persist($travailler);

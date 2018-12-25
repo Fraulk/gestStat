@@ -14,10 +14,12 @@
                 <div class="card mb-2">
                     
                     <h3 class="card-header">{{ region.RegNom }} {{ region.RegCode }} </h3>
-                    
-                    
                     <div class="card-body">
-                    
+                    {% for delegue in region.travaillers %}
+                        {% if delegue.traRole == "Délégué" %}
+                            <p>{{ delegue.traVis.visNom }} {{ delegue.traRole }} </p>
+                        {% endif %}
+                    {% endfor %}
                     </div>
                 </div>
                 

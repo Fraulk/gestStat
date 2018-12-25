@@ -49,6 +49,16 @@
    -webkit-box-sizing: border-box;
            box-sizing: border-box;
  }
+
+ ::-moz-selection { /*@bugfix mozilla*/
+  background: var(--gray); /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+  color: #fff
+}
+::selection { /* effet souris  */
+  background: var(--gray); /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+  color: #fff
+}
+
  
  html {
    font-family: sans-serif;

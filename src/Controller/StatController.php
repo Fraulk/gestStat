@@ -69,6 +69,19 @@ class StatController extends AbstractController
     }
 
     /**
+     * @Route("/nbVisitrParRegion", name="nbVisitrParRegion")
+     */
+    public function nbVisitrParReg(RegionRepository $repoRegion)
+    {
+        $Regions=$repoRegion->findAll();
+        return $this->render('stat/nbVisitrParRegion.html.twig', [
+            'controller_name' => 'RegionController',
+            'regions' => $Regions,
+            'pageCourante'=>"region"
+        ]);
+    }
+
+    /**
      * @Route("/departement", name="listeDep")
      */
     public function departement(DepartementRepository $repo)

@@ -7920,6 +7920,7 @@ mark {
  .mt-0,
  .my-0 {
    margin-top: 0 !important;
+   line-height: normal;
  }
  
  .mr-0,

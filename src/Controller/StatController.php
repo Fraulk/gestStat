@@ -59,12 +59,14 @@ class StatController extends AbstractController
     /** 
      * @Route("/region", name="liste_region")
      */
-    public function index(RegionRepository $repo)
+    public function index(RegionRepository $repo/*, SecteurRepository $repoSec*/)
     {
         $Regions=$repo->findAll();
+        //$secteurs = $repoSec->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
+            //'secteurs'  => $secteurs,
             'pageCourante'=>"region"
         ]);
     }

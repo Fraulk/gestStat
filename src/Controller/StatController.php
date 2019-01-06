@@ -85,12 +85,13 @@ class StatController extends AbstractController
     /**
      * @Route("/nbvisiteursdeleguesreg", name="liste_nb_vis_deleg_reg")
      */
-    public function visiteursdeleguesreg(VisiteurRepository $repo)
+    public function visiteursdeleguesreg(VisiteurRepository $repoVis, RegionRepository $repoReg, TravaillerRepository $repoTra)
     {
-        $Regions=$repo->findNombreVisiteursDeleguesReg();
+        $Visiteurs=$repoVis->findNombreVisiteursReg();
+        $Delegues=$repoTra->findNombreDeleguesReg();
         return $this->render('stat/visiteursdeleguesreg.html.twig', [
             'controller_name' => 'VisiteursdeleguesregController',
-            'regions' => $Regions,
+            'visiteurs' => $Visiteurs,
             'pageCourante' => 'listevisdel'
         ]);
     }

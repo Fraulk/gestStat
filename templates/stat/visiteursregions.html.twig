@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class='container'>
-    <h1>Liste des visiteurs qui travaillent par région</h1>
+    <h1>Liste des visiteurs qui travaillent dans la région</h1>
     <p>Choisir une région : </p>
     {{ form_start(form)}}
         <div class="form-group">
@@ -13,7 +13,7 @@
         <button type="submit" class="btn btn-primary">Envoyer</button>
     {{ form_end(form) }}
     <div>
-        <p>Liste des visiteurs travaillant dans cette région </p>
+        <p></p>
     </div>
     <table class='table table-hover'>
         <tr>
@@ -29,15 +29,15 @@
         </tr>
         {% for levisiteur in listevisites %}
         <tr>
-            <td>{{levisiteur.Id}}<td>
-            <td>{{levisiteur.VisDep.Id}}<td>
-            <td>{{levisiteur.VisSec}}<td>
-            <td>{{levisiteur.VisMatricule}}<td>
-            <td>{{levisiteur.VisNom}}<td>
-            <td>{{levisiteur.VisAdresse}}<td>
-            <td>{{levisiteur.VisCp}}<td>
-            <td>{{levisiteur.VisVille}}<td>
-            <td>{{levisiteur.VisDateembauche| date("d/m/Y")}}<td>
+            <td>{{levisiteur.Id}}</td>
+            <td>{{levisiteur.VisDep.Id}}</td>
+            <td>{{levisiteur.VisSec}}</td>
+            <td>{{levisiteur.VisMatricule}}</td>
+            <td>{{levisiteur.VisNom}}</td>
+            <td>{{levisiteur.VisAdresse}}</td>
+            <td>{{levisiteur.VisCp}}</td>
+            <td>{{levisiteur.VisVille}}</td>
+            <td>{{levisiteur.VisDateembauche| date("d/m/Y")}}</td>
         </tr>
         {% endfor %}
     </table>

@@ -99,11 +99,12 @@ class RegionFixtures extends Fixture
 
             }
 
+            $nbVisActuel = count($visitorTable) - 1;    //erreur d'offset sinon, je ne sais fichtrement pas pourquoi
             foreach($visitorTable as $v){
                 $travailler = new Travailler();
                 $roleTable = ["Visiteur", "Délégué", "Responsable secteur"];
                 $travailler->setTraReg($regionTable[mt_rand(0,18)])
-                            ->setTraVis($visitorTable[mt_rand(1,$i)])
+                            ->setTraVis($visitorTable[mt_rand(0,$nbVisActuel)])
                             ->setTraDate($faker->dateTimeBetween('-5 years', 'now'))
                             ->setTraRole($roleTable[mt_rand(0,2)]);
                 $manager->persist($travailler);
@@ -119,6 +120,9 @@ class RegionFixtures extends Fixture
                 $secteur->setSecLibelle($value)
                         ->setSecCode($i)
                         ->setRegion($regionTable[mt_rand(0,18)]);
+                for ($j=0; $j < mt_rand(3,15); $j++) { 
+                    $secteur->addVisiteur($visitorTable[mt_rand(0,$nbVisActuel)]);
+                }
                 $manager->persist($secteur);
             }
         $manager->flush();

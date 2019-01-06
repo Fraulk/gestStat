@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de statistique | Nombre de visiteur par secteur{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        <div class="row" style="padding-top: 10px;">
+            {% for secteur in secteurs %}
+                <div class="col-md-4">
+                    <div class="card mb-2">
+                        <h3 class="card-header">{{ secteur.secLibelle }} </h3>
+                        <div class="card-body">
+                        <p>Il y a actuellement {{ secteur.visiteurs|length }} visiteurs venant de ce secteur.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+{% endblock %}

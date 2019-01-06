@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
+use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,13 +59,41 @@ class StatController extends AbstractController
     /** 
      * @Route("/region", name="liste_region")
      */
-    public function index(RegionRepository $repo)
+    public function index(RegionRepository $repo/*, SecteurRepository $repoSec*/)
     {
         $Regions=$repo->findAll();
+        //$secteurs = $repoSec->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
+            //'secteurs'  => $secteurs,
             'pageCourante'=>"region"
+        ]);
+    }
+
+    /**
+     * @Route("/nbVisitrParRegion", name="nbVisitrParRegion")
+     */
+    public function nbVisitrParReg(RegionRepository $repoRegion)
+    {
+        $Regions=$repoRegion->findAll();
+        return $this->render('stat/nbVisitrParRegion.html.twig', [
+            'controller_name' => 'RegionController',
+            'regions' => $Regions,
+            'pageCourante'=>"region"
+        ]);
+    }
+
+    /**
+     * @Route("/nbVisitrParSecteur", name="nbVisitrParSecteur")
+     */
+    public function nbVisitrParSecteurg(SecteurRepository $repo)
+    {
+        $Secteur=$repo->findAll();
+        return $this->render('stat/nbVisitrParSecteur.html.twig', [
+            'controller_name' => 'RegionController',
+            'secteurs' => $Secteur,
+            'pageCourante'=>"secteur"
         ]);
     }
 
@@ -121,4 +150,5 @@ class StatController extends AbstractController
         ]);
 
     }
+
 }

@@ -49,6 +49,20 @@
    -webkit-box-sizing: border-box;
            box-sizing: border-box;
  }
+
+ ::-moz-selection { /*@bugfix mozilla*/
+  background: var(--gray); /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+  color: #fff
+}
+::selection { /* effet souris  */
+  background: var(--gray); /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+  color: #fff
+}
+
+mark {
+  background-color: var(--gray) !important;
+  color: #fff;
+}
  
  html {
    font-family: sans-serif;
@@ -7906,6 +7920,7 @@
  .mt-0,
  .my-0 {
    margin-top: 0 !important;
+   line-height: normal;
  }
  
  .mr-0,

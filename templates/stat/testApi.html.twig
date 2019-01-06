@@ -4,6 +4,7 @@
 
 {% block body %}
 
+<p>Liste des régions récupéré via une api</p>
 {% for cours in api %}
 <p> {{ cours.nom }}</p>
 {% endfor %}

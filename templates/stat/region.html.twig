@@ -16,7 +16,7 @@
                     <h3 class="card-header">{{ region.RegNom }} {{ region.RegCode }} </h3>
                     <div class="card-body">
                     {% for travailler in region.travaillers %}
-                        <p>{{ travailler.traVis.visMatricule }} {{ travailler.traVis.visNom }},<br>{{ travailler.traVis.visAdresse }} {{ travailler.traVis.visCp }} {{ travailler.traVis.visVille }} {{ travailler.traVis.visSec }}</p>
+                        <p>{{ travailler.traVis.visMatricule }} {{ travailler.traVis.visNom }},<br>{{ travailler.traVis.visAdresse }} {{ travailler.traVis.visCp }} {{ travailler.traVis.visVille }} {# {{ travailler.traVis.visSec }} #}</p>
                     {% endfor %}
                         {# <p>{{ region.adresse | raw }}, {{ region.codePostal }}, , {{ region.ville }}</p> #}
                         {# <p>Téléphone: {{ region.tel }}</p> #}

@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de statistique{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Visiteurs travaillant dans cette région</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Stat 1</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Affiche après selection</li>
+              <li>d'une région la liste</li>
+              <li>des visiteurs travaillant</li>
+              <li>dans une région</li>
+            </ul>
+            <a class="btn btn-lg btn-block btn-primary" href="{{path('visiteursparregion')}}" role="button">Voir</a>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Nombre visiteur par <mark>région</mark></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Stat 2 <small class="text-muted"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Affiche le</li>
+              <li>nombre de </li>
+              <li>visiteur</li>
+              <li>par <mark>région</mark></li>
+            </ul>
+            <a type="button" class="btn btn-lg btn-block btn-primary" href="{{ path('nbVisitrParRegion') }}">Voir</a>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Nombre visiteur par <mark>secteur</mark></h4>
+          </div>
+            <div class="card-body">
+            <h1 class="card-title pricing-card-title">Stat 3</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Affiche le</li>
+              <li>nombre de</li>
+              <li> visiteur </li>
+              <li>par <mark>secteur</mark></li>
+            </ul>
+            <a class="btn btn-lg btn-block btn-primary" href="{{ path('nbVisitrParSecteur') }}" role="button">Voir</a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Stat 4 </h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Stat 4</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Afficher les visiteurs</li>
+              <li>qui ont commencé à </li>
+              <li>travailler dans une période </li>
+              <li>donnée et une région</li>
+            </ul>
+            <a class="btn btn-lg btn-block btn-primary" href="#" role="button">Voir</a>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Stat</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary" href="#">Voir</button>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Stat</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

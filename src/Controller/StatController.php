@@ -8,6 +8,7 @@ use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
 use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
+use App\Repository\TravaillerRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;

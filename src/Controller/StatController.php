@@ -8,6 +8,7 @@ use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
 use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
+use App\Repository\TravaillerRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -98,6 +99,20 @@ class StatController extends AbstractController
     }
 
     /**
+     * @Route("/nbDelegParRegion.html", name="nbDelegParRegion")
+     */
+    public function nbDelegParRegion(TravaillerRepository $repo)
+    {
+        $Regions=$repo->findNombreDeleguesReg();
+        return $this->render('stat/nbDelegParRegion.html.twig', [
+            'controller_name' => 'nbDelegParRegionController',
+            'delegues' => $Delegues,
+            'pageCourante' => 'listevisdel'
+        ]);
+
+    }
+
+    /**
      * @Route("/departement", name="listeDep")
      */
     public function departement(DepartementRepository $repo)
@@ -114,12 +129,16 @@ class StatController extends AbstractController
     /**
      * @Route("/nbvisiteursdeleguesreg", name="liste_nb_vis_deleg_reg")
      */
-    public function visiteursdeleguesreg(RegionRepository $repo)
+    public function visiteursdeleguesreg(VisiteurRepository $repoVis, TravaillerRepository $repoTra)
     {
-        $Regions=$repo->findAll();
+        $Visiteurs=$repoVis->findNombreVisiteursReg();
+        $Delegues=$repoTra->findNombreDeleguesReg();
+        $AllDelegues=$repoTra->findAllDelegue();
         return $this->render('stat/visiteursdeleguesreg.html.twig', [
             'controller_name' => 'VisiteursdeleguesregController',
-            'regions' => $Regions,
+            'visiteurs' => $Visiteurs,
+            'delegues' => $Delegues,
+            'allDelegues' => $AllDelegues,
             'pageCourante' => 'listevisdel'
         ]);
     }

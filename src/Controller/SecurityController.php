@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends Controller
 {
+    // Cette route mène à la page d'inscription
         /**
          * @Route ("/inscription", name="security_registration")
          */
@@ -40,6 +41,8 @@ class SecurityController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    // Cette Route vérifie si l'utilisatur a bien rentrer le mot de passe et l'adrese email
     /**
      * @Route("/connexion", name="security_login")
      */
@@ -49,6 +52,7 @@ class SecurityController extends Controller
         ]);
     }
 
+    // Cette route permet de se déconnecter
     /**
      * @Route("/deconnexion", name="security_logout")
      */

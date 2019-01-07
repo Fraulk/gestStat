@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Faker\Factory;
 use App\Entity\Region;
+use App\Form\VisitrRegPerType;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
 use App\Repository\SecteurRepository;
@@ -49,6 +50,34 @@ class StatController extends AbstractController
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
             'listevisites' => $listevisites
+        ]);
+    }
+
+    /**
+     * Sélectionner une région et une période ,affiche la liste des visiteurs qui ont commencé à y travailler
+     * @Route("/visitr_reg_per", name="visiteursparregionper")
+     */
+    public function visiteurparregionper(ObjectManager $manager,Request $request,VisiteurRepository $repo)
+    {
+        $form = $this->createForm(VisitrRegPerType::class);
+        $form->handleRequest($request);
+        dump($request);
+        $listevisiteurs= null;
+        if($form->isSubmitted())
+        {
+            $postData = $request->request->get('visitr_reg_per');
+            $name_value = $postData['reg_nom'];
+            $datedeb_value = $postData['date_debut'];
+            $datefin_value = $postData['date_fin'];
+            dump($name_value);
+            dump($datedeb_value);
+            dump($datefin_value);
+            $listevisiteurs =$repo->findVisitrTravRegPeriode($name_value,$datedeb_value,$datefin_value);
+            dump($listevisiteurs);
+        }
+        return $this->render('stat/visitrscomregper.html.twig',[
+            'form' => $form->createView(),
+            'listevisiteurs' => $listevisiteurs
         ]);
     }
 

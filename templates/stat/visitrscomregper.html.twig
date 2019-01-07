@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block titre 'Nombre de visiteurs par region' %}
+
+{% block body %}
+<div class='container'>
+    <h1>Liste des visiteurs qui ont commencé à travailler dans la région à une période donnée</h1>
+    <p>Choisir une région et une période donnée : </p>
+    {{ form_start(form)}}
+        <div class="form-group">
+            {{form_widget(form)}}
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form_end(form) }}
+        <table class='table table-hover'>
+        <tr>
+            <th>Visiteur Id</th>
+            <th>Département Id</th>
+            <th>Secteur Id</th>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Code Postal</th>
+            <th>Ville</th>
+            <th>Date Embauche</th>
+        </tr>
+        {% for levisiteur in listevisites %}
+        <tr>
+            <td>{{levisiteur.Id}}</td>
+            <td>{{levisiteur.VisDep.Id}}</td>
+            <td>{{levisiteur.VisSec}}</td>
+            <td>{{levisiteur.VisMatricule}}</td>
+            <td>{{levisiteur.VisNom}}</td>
+            <td>{{levisiteur.VisAdresse}}</td>
+            <td>{{levisiteur.VisCp}}</td>
+            <td>{{levisiteur.VisVille}}</td>
+            <td>{{levisiteur.VisDateembauche| date("d/m/Y")}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+
+{% endblock %}

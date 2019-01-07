@@ -129,16 +129,12 @@ class StatController extends AbstractController
     /**
      * @Route("/nbvisiteursdeleguesreg", name="liste_nb_vis_deleg_reg")
      */
-    public function visiteursdeleguesreg(VisiteurRepository $repoVis, TravaillerRepository $repoTra)
+    public function visiteursdeleguesreg(RegionRepository $repo)
     {
-        //$Visiteurs=$repoVis->findNombreVisiteursReg();
-        $Delegues=$repoTra->findNombreDeleguesReg();
-        $AllDelegues=$repoTra->findAllDelegue();
+        $Regions=$repo->findAll();
         return $this->render('stat/visiteursdeleguesreg.html.twig', [
             'controller_name' => 'VisiteursdeleguesregController',
-            'visiteurs' => $Visiteurs,
-            'delegues' => $Delegues,
-            'allDelegues' => $AllDelegues,
+            'regions' => $Regions,
             'pageCourante' => 'listevisdel'
         ]);
     }
@@ -167,20 +163,6 @@ class StatController extends AbstractController
             'pageCourante'  =>  'api'
         ]);
 
-    }
-
-    /**
-     * @Route("/speedrun", name="speedrun")
-     */
-    public function apiSpeedrunComTest(){
-        $api = file_get_contents('https://www.speedrun.com/api/v1/games');
-        $apiDecode = json_decode($api);
-        // dump($apiDecode);
-        // die();
-        return $this->render('stat/apiSpeedrunCom.html.twig', [
-            'controller_name'   => 'ApiController',
-            'api'               => $apiDecode
-        ]);
     }
 
 }

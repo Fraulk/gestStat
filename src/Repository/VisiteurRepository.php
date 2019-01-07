@@ -36,9 +36,12 @@ class VisiteurRepository extends ServiceEntityRepository
     }
     */
 
-    
+    /*
     public function findNombreVisiteursReg()
     {
+        
+        
+            
         return $this->createQueryBuilder('v')
             ->select('r.reg_nom, count(v.id)')
             ->join('v.travaillers', 't')
@@ -47,12 +50,10 @@ class VisiteurRepository extends ServiceEntityRepository
             ->orderBy('r.reg_code')
             ->getQuery()
             ->getResult();
-            /*->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->setMaxResults(10)
-            */ 
+            
     }
-    
+    */ 
+
     /*
     public function findOneBySomeField($value): ?Visiteur
     {

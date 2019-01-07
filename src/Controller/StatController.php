@@ -150,4 +150,18 @@ class StatController extends AbstractController
 
     }
 
+    /**
+     * @Route("/speedrun", name="speedrun")
+     */
+    public function apiSpeedrunComTest(){
+        $api = file_get_contents('https://www.speedrun.com/api/v1/games');
+        $apiDecode = json_decode($api);
+        // dump($apiDecode);
+        // die();
+        return $this->render('stat/apiSpeedrunCom.html.twig', [
+            'controller_name'   => 'ApiController',
+            'api'               => $apiDecode
+        ]);
+    }
+
 }

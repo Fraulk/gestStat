@@ -52,7 +52,7 @@ class VisiteurRepository extends ServiceEntityRepository
             ->getResult();
             
     }
-    */ 
+    */
 
     /*
     public function findOneBySomeField($value): ?Visiteur

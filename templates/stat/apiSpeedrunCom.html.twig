@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de statistique | Test d'API{% endblock %}
+
+{% block body %}
+
+<p>Speedruns</p>
+{% for speedrun in api %}
+<p> {{ speedrun.data.abbreviation }}</p>
+{% endfor %}
+
+{% endblock %}

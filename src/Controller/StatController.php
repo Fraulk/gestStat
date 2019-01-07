@@ -9,6 +9,7 @@ use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
 use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
+use App\Repository\TravaillerRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -124,6 +125,20 @@ class StatController extends AbstractController
             'secteurs' => $Secteur,
             'pageCourante'=>"secteur"
         ]);
+    }
+
+    /**
+     * @Route("/nbDelegParRegion.html", name="nbDelegParRegion")
+     */
+    public function nbDelegParRegion(TravaillerRepository $repo)
+    {
+        $Regions=$repo->findNombreDeleguesReg();
+        return $this->render('stat/nbDelegParRegion.html.twig', [
+            'controller_name' => 'nbDelegParRegionController',
+            'delegues' => $Delegues,
+            'pageCourante' => 'listevisdel'
+        ]);
+
     }
 
     /**

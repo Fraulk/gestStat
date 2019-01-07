@@ -19,6 +19,34 @@ class TravaillerRepository extends ServiceEntityRepository
         parent::__construct($registry, Travailler::class);
     }
 
+
+    public function findNombreDeleguesReg()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('r.reg_nom, count(t.id)')
+            ->join('t.tra_reg','r')
+            ->andWhere('t.tra_role = Délégué')
+            ->getQuery()
+            ->getResult();
+            
+    }
+
+    /*
+    public function findAllDelegue()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('vis_nom')
+            ->join('t.tra_vis', 'v')
+            ->andWhere('t.tra_role = Délégué')
+            ->groupBy('v.vis_nom')
+            ->orderBy('v.vis_nom') 
+            ->getQuery()
+            ->getResult();
+            
+             
+    }
+    */
+
     // /**
     //  * @return Travailler[] Returns an array of Travailler objects
     //  */

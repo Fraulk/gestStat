@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Connexion !</h1>
-
+    {# Cette page mène à la route Security login #}
     <form action="{{ path('security_login') }}" method="post">
         <div class="form-group">
             <input placeholder="Adresse email..." required name="_username" type="text" class="form-control">

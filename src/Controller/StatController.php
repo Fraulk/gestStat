@@ -131,7 +131,7 @@ class StatController extends AbstractController
      */
     public function visiteursdeleguesreg(VisiteurRepository $repoVis, TravaillerRepository $repoTra)
     {
-        $Visiteurs=$repoVis->findNombreVisiteursReg();
+        //$Visiteurs=$repoVis->findNombreVisiteursReg();
         $Delegues=$repoTra->findNombreDeleguesReg();
         $AllDelegues=$repoTra->findAllDelegue();
         return $this->render('stat/visiteursdeleguesreg.html.twig', [

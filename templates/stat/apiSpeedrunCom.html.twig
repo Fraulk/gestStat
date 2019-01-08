@@ -10,13 +10,12 @@
         {% for speedrun in api.data %}
             <div class="col-md-4">
                 <div class="card mb-2">
-                    <h3 class="card-header"> <p> {{ speedrun.names.international }}</p></h3>
-                    <div class="card-body">
-                    {{ dump(speedrun) }}
-                    {% set test="speedrun.assets.cover-large.uri" %}
-                    {{ dump(test) }}
-                    <img src={{ 'speedrun.assets.cover-large.uri' | e('url') }}>
-                    {# <img src="{{ speedrun.assets.background }}"> #}
+                    <h3 class="card-header" style="background: #CCC;"><a href="{{ speedrun.weblink }}" <p> {{ speedrun.names.international }}</p></a></h3>
+                    <div class="card-body" style="background: #848484;">
+                    {# {{ dump(speedrun) }} #}
+                    {% set image=attribute(speedrun.assets, 'cover-medium') %}
+                    {# {{ dump(attribute(image, 'uri')) }} #}
+                    <img src={{ attribute(image, 'uri') }}>
                     </div>
                 </div>
             </div>

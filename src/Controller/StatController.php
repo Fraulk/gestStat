@@ -7,10 +7,10 @@ use App\Entity\Region;
 use App\Form\VisitrRegPerType;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
-use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
-use App\Repository\TravaillerRepository;
 use App\Repository\DepartementRepository;
+use App\Repository\SecteurRepository;
+use App\Repository\TravaillerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,7 +50,7 @@ class StatController extends AbstractController
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
-            'listevisites' => $listevisites
+            'listevisites' => $listevisites 
         ]);
     }
 
@@ -94,14 +94,12 @@ class StatController extends AbstractController
     /** 
      * @Route("/region", name="liste_region")
      */
-    public function index(RegionRepository $repo/*, SecteurRepository $repoSec*/)
+    public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
-        //$secteurs = $repoSec->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
-            //'secteurs'  => $secteurs,
             'pageCourante'=>"region"
         ]);
     }
@@ -196,7 +194,20 @@ class StatController extends AbstractController
             'api'   =>  $apiDecode,
             'pageCourante'  =>  'api'
         ]);
-
     }
 
+    /**
+     * @Route("/speedrun", name="api")
+     */
+    public function speedrunApi()
+    {
+        $api = file_get_contents('https://www.speedrun.com/api/v1/games');
+        $apiDecode = json_decode($api);
+        // dump($apiDecode);
+        // die();
+        return $this->render('stat/apiSpeedrunCom.html.twig', [
+            'controller_name'   =>  'ApiController',
+            'api'   =>  $apiDecode
+        ]);
+    }
 }

@@ -68,11 +68,16 @@ class StatController extends AbstractController
         {
             $postData = $request->request->get('visitr_reg_per');
             $name_value = $postData['reg_nom'];
-            $datedeb_value = $postData['date_debut'];
-            $datefin_value = $postData['date_fin'];
+            $datedeb = $postData['date_debut'];
+            $datefin = $postData['date_fin'];
             dump($name_value);
+            $time2 = strtotime($datedeb);
+            $datedeb_value= date('Y-m-d',$time2);
+            $time = strtotime($datefin);
+            $datefin_value= date('Y-m-d',$time);
             dump($datedeb_value);
             dump($datefin_value);
+            
             $listevisiteurs =$repo->findVisitrTravRegPeriode($name_value,$datedeb_value,$datefin_value);
             dump($listevisiteurs);
         }

@@ -132,7 +132,7 @@ class StatController extends AbstractController
      */
     public function nbDelegParRegion(TravaillerRepository $repo)
     {
-        $Regions=$repo->findNombreDeleguesReg();
+        $Delegues=$repo->findNombreDeleguesReg();
         return $this->render('stat/nbDelegParRegion.html.twig', [
             'controller_name' => 'nbDelegParRegionController',
             'delegues' => $Delegues,

@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use Faker\Factory;
 use App\Entity\Region;
+use App\Form\VisitrRegPerType;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
-use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
-use App\Repository\TravaillerRepository;
 use App\Repository\DepartementRepository;
+use App\Repository\SecteurRepository;
+use App\Repository\TravaillerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,7 +50,35 @@ class StatController extends AbstractController
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
-            'listevisites' => $listevisites
+            'listevisites' => $listevisites 
+        ]);
+    }
+
+    /**
+     * Sélectionner une région et une période ,affiche la liste des visiteurs qui ont commencé à y travailler
+     * @Route("/visitr_reg_per", name="visiteursparregionper")
+     */
+    public function visiteurparregionper(ObjectManager $manager,Request $request,VisiteurRepository $repo)
+    {
+        $form = $this->createForm(VisitrRegPerType::class);
+        $form->handleRequest($request);
+        dump($request);
+        $listevisiteurs= null;
+        if($form->isSubmitted())
+        {
+            $postData = $request->request->get('visitr_reg_per');
+            $name_value = $postData['reg_nom'];
+            $datedeb_value = $postData['date_debut'];
+            $datefin_value = $postData['date_fin'];
+            dump($name_value);
+            dump($datedeb_value);
+            dump($datefin_value);
+            $listevisiteurs =$repo->findVisitrTravRegPeriode($name_value,$datedeb_value,$datefin_value);
+            dump($listevisiteurs);
+        }
+        return $this->render('stat/visitrscomregper.html.twig',[
+            'form' => $form->createView(),
+            'listevisiteurs' => $listevisiteurs
         ]);
     }
 
@@ -60,14 +89,12 @@ class StatController extends AbstractController
     /** 
      * @Route("/region", name="liste_region")
      */
-    public function index(RegionRepository $repo/*, SecteurRepository $repoSec*/)
+    public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
-        //$secteurs = $repoSec->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
-            //'secteurs'  => $secteurs,
             'pageCourante'=>"region"
         ]);
     }
@@ -103,7 +130,7 @@ class StatController extends AbstractController
      */
     public function nbDelegParRegion(TravaillerRepository $repo)
     {
-        $Regions=$repo->findNombreDeleguesReg();
+        $Delegues=$repo->findNombreDeleguesReg();
         return $this->render('stat/nbDelegParRegion.html.twig', [
             'controller_name' => 'nbDelegParRegionController',
             'delegues' => $Delegues,
@@ -178,5 +205,4 @@ class StatController extends AbstractController
             'api'   =>  $apiDecode
         ]);
     }
-
 }

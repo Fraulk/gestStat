@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Visiteur;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Visiteur|null find($id, $lockMode = null, $lockVersion = null)
@@ -49,10 +50,16 @@ class VisiteurRepository extends ServiceEntityRepository
             ->groupBy('r')
             ->orderBy('r.reg_code')
             ->getQuery()
-            ->getResult();
+            ->getResult()
+            ;
+
+
+            /*->andWhere('v.exampleField = :val')
+            ->setParameter('val', $value)
+            ->setMaxResults(10)
+            */
             
-    }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Visiteur
@@ -66,13 +73,30 @@ class VisiteurRepository extends ServiceEntityRepository
     }
     */
         
-        public function findVisitrTravReg($numregion)
-        {
-            return $this->createQueryBuilder('v')
-                        ->join('v.travaillers', 't')
-                        ->andWhere('t.tra_reg = :val')
-                        ->setParameter('val', $numregion)
-                        ->getQuery()
-                        ->getResult();
-        }
+    public function findVisitrTravReg($numregion)
+    {
+        return $this->createQueryBuilder('v')
+                    ->join('v.travaillers', 't')
+                    ->andWhere('t.tra_reg = :val')
+                    ->setParameter('val', $numregion)
+                    ->getQuery()
+                    ->getResult();
+    }
+
+    /**visiteurs qui ont commencé à travailler 
+    ** dans une région donnée 
+    ** et une période
+    */
+    public function findVisitrTravRegPeriode($numregion, $datedeb, $datefin)
+    {
+        return $this->createQueryBuilder('v')
+                    ->join('v.travaillers', 't')
+                    ->Where('t.tra_reg = :val')
+                    ->andwhere('v.vis_dateembauche BETWEEN :datedeb AND :datefin')
+                    ->setParameter('val', $numregion)
+                    ->setParameter('datedeb', $datedeb)
+                    ->setParameter('datefin', $datefin)
+                    ->getQuery()
+                    ->getResult();
+    }
 }

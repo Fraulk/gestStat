@@ -6,9 +6,7 @@ use Faker\Factory;
 use App\Entity\Region;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
-use App\Repository\SecteurRepository;
 use App\Repository\VisiteurRepository;
-use App\Repository\TravaillerRepository;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -49,7 +47,7 @@ class StatController extends AbstractController
         }
         return $this->render('stat/visiteursregions.html.twig',[
             'form' => $form->createView(),
-            'listevisites' => $listevisites
+            'listevisites' => $listevisites 
         ]);
     }
 
@@ -60,56 +58,14 @@ class StatController extends AbstractController
     /** 
      * @Route("/region", name="liste_region")
      */
-    public function index(RegionRepository $repo/*, SecteurRepository $repoSec*/)
+    public function index(RegionRepository $repo)
     {
         $Regions=$repo->findAll();
-        //$secteurs = $repoSec->findAll();
         return $this->render('stat/region.html.twig', [
             'controller_name' => 'RegionController',
             'regions' => $Regions,
-            //'secteurs'  => $secteurs,
             'pageCourante'=>"region"
         ]);
-    }
-
-    /**
-     * @Route("/nbVisitrParRegion", name="nbVisitrParRegion")
-     */
-    public function nbVisitrParReg(RegionRepository $repoRegion)
-    {
-        $Regions=$repoRegion->findAll();
-        return $this->render('stat/nbVisitrParRegion.html.twig', [
-            'controller_name' => 'RegionController',
-            'regions' => $Regions,
-            'pageCourante'=>"region"
-        ]);
-    }
-
-    /**
-     * @Route("/nbVisitrParSecteur", name="nbVisitrParSecteur")
-     */
-    public function nbVisitrParSecteurg(SecteurRepository $repo)
-    {
-        $Secteur=$repo->findAll();
-        return $this->render('stat/nbVisitrParSecteur.html.twig', [
-            'controller_name' => 'RegionController',
-            'secteurs' => $Secteur,
-            'pageCourante'=>"secteur"
-        ]);
-    }
-
-    /**
-     * @Route("/nbDelegParRegion.html", name="nbDelegParRegion")
-     */
-    public function nbDelegParRegion(TravaillerRepository $repo)
-    {
-        $Regions=$repo->findNombreDeleguesReg();
-        return $this->render('stat/nbDelegParRegion.html.twig', [
-            'controller_name' => 'nbDelegParRegionController',
-            'delegues' => $Delegues,
-            'pageCourante' => 'listevisdel'
-        ]);
-
     }
 
     /**
@@ -164,5 +120,4 @@ class StatController extends AbstractController
         ]);
 
     }
-
 }

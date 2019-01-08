@@ -1,10 +1,16 @@
+
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <head>
+        <link type="text/css" href="jquery-ui/css/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />  
+    </head>
+{% endblock %}
 
 {% block titre 'Nombre de visiteurs par region' %}
 
 {% block body %}
 <div class='container'>
-    <h1>Liste des visiteurs qui ont commencé à travailler dans la région à une période donnée</h1>
+    <h1 style="margin-top:25px;">Liste des visiteurs qui ont commencé à travailler dans la région à une période donnée</h1>
     <p>Choisir une région et une période donnée : </p>
     {{ form_start(form)}}
         <div class="form-group">
@@ -16,7 +22,6 @@
         <tr>
             <th>Visiteur Id</th>
             <th>Département Id</th>
-            <th>Secteur Id</th>
             <th>Matricule</th>
             <th>Nom</th>
             <th>Adresse</th>
@@ -24,11 +29,10 @@
             <th>Ville</th>
             <th>Date Embauche</th>
         </tr>
-        {% for levisiteur in listevisites %}
+        {% for levisiteur in listevisiteurs %}
         <tr>
             <td>{{levisiteur.Id}}</td>
             <td>{{levisiteur.VisDep.Id}}</td>
-            <td>{{levisiteur.VisSec}}</td>
             <td>{{levisiteur.VisMatricule}}</td>
             <td>{{levisiteur.VisNom}}</td>
             <td>{{levisiteur.VisAdresse}}</td>
@@ -38,8 +42,39 @@
         </tr>
         {% endfor %}
     </table>
-
-
 </div>
 
 {% endblock %}
+{% block javascripts %}
+    <script type="application/javascript" src="jquery-ui/js/jquery-1.9.1.js"></script>  
+    <script type="application/javascript" src="jquery-ui/js/jquery-ui-1.10.3.custom.js"></script> 
+    <script type="application/javascript" src="jquery-ui/js/jquery.ui.datepicker-fr.js"></script>
+    <script type="application/javascript"> 
+        $(document).ready(function() { 
+            $("#visitr_reg_per_date_debut").datepicker({ 
+                defaultDate: "+1w", 
+                numberOfMonths: 2, 
+                changeMonth: true, 
+                changeYear: true, 
+                yearRange: '-10:+1', 
+                maxDate: '+2Y', 
+                onClose: function( selectedDate ) { 
+                $("#date_fin").datepicker("option", "minDate", selectedDate); 
+                } 
+            }); 
+            $("#visitr_reg_per_date_fin").datepicker({ 
+                defaultDate: "+1w", 
+                numberOfMonths: 2, 
+                changeMonth: true, 
+                changeYear: true, 
+                maxDate: '+2Y', 
+                onClose: function( selectedDate ) { 
+                $("#date_debut").datepicker("option", "maxDate", selectedDate); 
+                } 
+            });     
+        });
+    </script>
+    {% endblock %}
+    
+
+			

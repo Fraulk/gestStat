@@ -5,8 +5,23 @@
 {% block body %}
 
 <p>Speedruns</p>
-{% for speedrun in api %}
-<p> {{ speedrun.data.abbreviation }}</p>
-{% endfor %}
+<div class="container">
+    <div class="row" style="padding-top: 10px;">
+        {% for speedrun in api.data %}
+            <div class="col-md-4">
+                <div class="card mb-2">
+                    <h3 class="card-header"> <p> {{ speedrun.names.international }}</p></h3>
+                    <div class="card-body">
+                    {{ dump(speedrun) }}
+                    {% set test="speedrun.assets.cover-large.uri" %}
+                    {{ dump(test) }}
+                    <img src={{ 'speedrun.assets.cover-large.uri' | e('url') }}>
+                    {# <img src="{{ speedrun.assets.background }}"> #}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

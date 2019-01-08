@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Faker\Factory;
 use App\Entity\Region;
+use App\Form\VisitrRegPerType;
 use App\Form\VisiteurParRegionType;
 use App\Repository\RegionRepository;
 use App\Repository\VisiteurRepository;
@@ -51,6 +52,34 @@ class StatController extends AbstractController
         ]);
     }
 
+    /**
+     * Sélectionner une région et une période ,affiche la liste des visiteurs qui ont commencé à y travailler
+     * @Route("/visitr_reg_per", name="visiteursparregionper")
+     */
+    public function visiteurparregionper(ObjectManager $manager,Request $request,VisiteurRepository $repo)
+    {
+        $form = $this->createForm(VisitrRegPerType::class);
+        $form->handleRequest($request);
+        dump($request);
+        $listevisiteurs= null;
+        if($form->isSubmitted())
+        {
+            $postData = $request->request->get('visitr_reg_per');
+            $name_value = $postData['reg_nom'];
+            $datedeb_value = $postData['date_debut'];
+            $datefin_value = $postData['date_fin'];
+            dump($name_value);
+            dump($datedeb_value);
+            dump($datefin_value);
+            $listevisiteurs =$repo->findVisitrTravRegPeriode($name_value,$datedeb_value,$datefin_value);
+            dump($listevisiteurs);
+        }
+        return $this->render('stat/visitrscomregper.html.twig',[
+            'form' => $form->createView(),
+            'listevisiteurs' => $listevisiteurs
+        ]);
+    }
+
 
     // grâce au méthode findAll() du repository de Region, on aura la liste de tous les regions
     // on la d'ailleurs définit dans $Regions
@@ -66,6 +95,46 @@ class StatController extends AbstractController
             'regions' => $Regions,
             'pageCourante'=>"region"
         ]);
+    }
+
+    /**
+     * @Route("/nbVisitrParRegion", name="nbVisitrParRegion")
+     */
+    public function nbVisitrParReg(RegionRepository $repoRegion)
+    {
+        $Regions=$repoRegion->findAll();
+        return $this->render('stat/nbVisitrParRegion.html.twig', [
+            'controller_name' => 'RegionController',
+            'regions' => $Regions,
+            'pageCourante'=>"region"
+        ]);
+    }
+
+    /**
+     * @Route("/nbVisitrParSecteur", name="nbVisitrParSecteur")
+     */
+    public function nbVisitrParSecteurg(SecteurRepository $repo)
+    {
+        $Secteur=$repo->findAll();
+        return $this->render('stat/nbVisitrParSecteur.html.twig', [
+            'controller_name' => 'RegionController',
+            'secteurs' => $Secteur,
+            'pageCourante'=>"secteur"
+        ]);
+    }
+
+    /**
+     * @Route("/nbDelegParRegion.html", name="nbDelegParRegion")
+     */
+    public function nbDelegParRegion(TravaillerRepository $repo)
+    {
+        $Delegues=$repo->findNombreDeleguesReg();
+        return $this->render('stat/nbDelegParRegion.html.twig', [
+            'controller_name' => 'nbDelegParRegionController',
+            'delegues' => $Delegues,
+            'pageCourante' => 'listevisdel'
+        ]);
+
     }
 
     /**

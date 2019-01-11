@@ -23,10 +23,11 @@ class TravaillerRepository extends ServiceEntityRepository
     public function findNombreDeleguesReg()
     {
         return $this->createQueryBuilder('t')
-            ->select('r.reg_nom, r.reg_code, count(t.id)')
+            ->select('r.reg_nom as regNom , r.reg_code as regCode, count(t.id) as nbDelegue')
             ->join('t.tra_reg','r')
-            ->andWhere('t.tra_role = Délégué')
-            ->groupBy('r.reg_code')
+            ->andWhere('t.tra_role = :role')
+            ->setParameter('role','Délégué')
+            ->groupBy('r.reg_code','r.reg_nom')
             ->getQuery()
             ->getResult();
             

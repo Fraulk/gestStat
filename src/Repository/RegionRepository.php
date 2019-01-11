@@ -19,6 +19,20 @@ class RegionRepository extends ServiceEntityRepository
         parent::__construct($registry, Region::class);
     }
 
+
+    /*public function findNombreDeleguesReg()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.reg_nom, r.reg_code, count(t.id)')
+            ->join('r.travaillers','t')
+            ->andWhere('t.tra_role = Délégué')
+            ->groupBy('r.reg_code')
+            ->getQuery()
+            ->getResult();
+            
+    }*/
+
+
     // /**
     //  * @return Region[] Returns an array of Region objects
     //  */

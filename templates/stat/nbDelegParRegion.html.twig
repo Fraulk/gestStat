@@ -9,9 +9,9 @@
             {% for delegue in delegues %}
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <h3 class="card-header">{{ delegue.RegNom }} {{ delegue.RegCode }} </h3>
+                        <h3 class="card-header">{{ delegue.regNom }} {{ delegue.regCode }} </h3>
                         <div class="card-body">
-                        <p>Il y a actuellement {{ delegue.count(t.id) }} visiteurs venant de cette région</p>
+                        <p>Il y a actuellement {{delegue.nbDelegue}} visiteurs dans cette région</p>
                         </div>
                     </div>
                 </div>
